@@ -10,9 +10,8 @@ import { useEffect, useState } from "react";
 
 export default function FirebaseUI() {
   const { userId } = useAuth();
-
   const user = useFirebaseUser();
-
+  const pathname = usePathname();
   const [username, setUsername] = useState<string | null>(null);
 
   useEffect(() => {
@@ -28,7 +27,7 @@ export default function FirebaseUI() {
     fetchData();
   }, [user]);
 
-  if (!userId && !PUBLIC_PAGES.includes(usePathname())) {
+  if (!userId && !PUBLIC_PAGES.includes(pathname)) {
     return <p>You need to sign in with Clerk to access this page.</p>
   }
 
