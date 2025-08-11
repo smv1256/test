@@ -1,12 +1,9 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import { Inter, Lato } from "next/font/google";
 import "./globals.css";
 import FirebaseUI from "../components/firebaseAuthWrapper";
 import { FirebaseUserProvider } from "./context/firebaseUser";
-
-export const inter = Inter({ subsets: ["latin"] });
-export const lato = Lato({ weight: "300", subsets: ["latin"] });
+import { inter, lato } from "../public/fonts";
 
 export const metadata: Metadata = {
   title: "",
