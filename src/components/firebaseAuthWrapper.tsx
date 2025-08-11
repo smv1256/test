@@ -11,24 +11,26 @@ import { useEffect, useState } from "react";
 export default function FirebaseUI() {
   const { userId } = useAuth();
 
-  if (!userId && !PUBLIC_PAGES.includes(usePathname())) {
-    return <p>You need to sign in with Clerk to access this page.</p>
-  }
-
   const user = useFirebaseUser();
 
   const [username, setUsername] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user?.uid) return;
+    // if (!user?.uid) return; <-- eslint compilation error, "React Hook called conditionally"
 
     const fetchData = async () => {
-      const data = await getFirestoreData(user.uid);
-      setUsername(data?.username || "User");
+      if (user !== null) {
+        const data = await getFirestoreData(user.uid);
+        setUsername(data?.username || "User");
+      }
     };
 
     fetchData();
   }, [user]);
+
+  if (!userId && !PUBLIC_PAGES.includes(usePathname())) {
+    return <p>You need to sign in with Clerk to access this page.</p>
+  }
 
   return (
     <main>
