@@ -2,7 +2,7 @@
 
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import { useAuth } from "@clerk/nextjs";
-import { PUBLIC_PAGES } from "@/backend/utils/constants";
+import { isPublic } from "@/backend/utils/isPublic";
 import { usePathname } from 'next/navigation';
 import { useFirebaseUser } from "@/app/context/firebaseUser";
 import { getFirestoreData } from "@/backend/utils/fireFunctions";
@@ -27,7 +27,7 @@ export default function FirebaseUI() {
     fetchData();
   }, [user]);
 
-  if (!userId && !PUBLIC_PAGES.includes(pathname)) {
+  if (!userId && !isPublic(usePathname())) {
     return <p>You need to sign in with Clerk to access this page.</p>
   }
 
