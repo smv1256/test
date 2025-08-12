@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import FirebaseUI from "../components/firebaseAuthWrapper";
 import { FirebaseUserProvider } from "./context/firebaseUser";
-import { inter, lato } from "../public/fonts";
+import { inter, lato } from "../../public/fonts";
 
 export const metadata: Metadata = {
   title: "",
