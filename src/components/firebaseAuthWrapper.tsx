@@ -27,7 +27,7 @@ export default function FirebaseUI() {
     fetchData();
   }, [user]);
 
-  if (!userId && !isPublic(usePathname())) {
+  if (!userId && !isPublic(pathname)) {
     return <p>You need to sign in with Clerk to access this page.</p>
   }
 
