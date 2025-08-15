@@ -18,13 +18,12 @@ export async function POST(req: NextRequest) {
                 const user = adminDB.collection("users").doc(evt.data.id);
                 await user.set({
                     email: evt.data.email_addresses[0].email_address,
-                    // username: email.match("^[^@]+")
                     username: evt.data.username,
                     createdAt: new Date(),
                 }); 
               }
             } catch { 
-              console.log("No email address, but user.created webhook caught")
+              console.log("No email address, but user.created webhook caught");
               return new Response("No email address, but webhook caught", { status: 200 }); 
             }
             break;

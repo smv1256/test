@@ -15,8 +15,6 @@ export default function FirebaseUI() {
   const [username, setUsername] = useState<string | null>(null);
 
   useEffect(() => {
-    // if (!user?.uid) return; <-- eslint compilation error, "React Hook called conditionally"
-
     const fetchData = async () => {
       if (user !== null) {
         const data = await getFirestoreData(user.uid);
